@@ -74,28 +74,27 @@ let updateData = () => {
     let i = 0;
     let {valor_previo, valor_actual, mensaje_tiempo} = cambios[i];
     
-    let clase_cambio = (porcentaje) => {
+    let fn_clase_cambio = (porcentaje) => {
         let clase = porcentaje > 0 ? 'text-success' : 'text-daner';
         return clase;
     }
 
-    let porcentaje_de_cambio = (valor_previo, valor_actual) => (valor_actual - valor_previo) * 100 / valor_previo;
-
-    let mensaje_texto = '<p class="mb-0"><span class="text-sm ${clase_cambio} font-weight-bolder"> ${porcentaje_de_cambio} </span> ${mensaje_tiempo} </p>'
+    let fn_porcentaje_de_cambio = (valor_previo, valor_actual) => (valor_actual - valor_previo) * 100 / valor_previo;
 
     let listaDeFooters = getElementsByClassName("card-footer p-3");
 
     listaDeFooters[0].innerHTML = mensaje_texto;
     
-    for (let i=1; i < cambios.length - 1; ) {
-        {valor_previo, valor_actual, mensaje_tiempo} = cambios[i];
-        clase_cambio(porcentaje_de_cambio)
+    for (let i=0; i < cambios.length - 1; ) {
+        let {valor_previo, valor_actual, mensaje_tiempo} = cambios[i];
 
-}
-    
+        let porcentaje_de_cambio = fn_porcentaje_de_cambio(valor_previom valor_actual);
         
-    
+        let clase_cambio = fn_clase_cambio(porcentaje_de_cambio, mensaje_tiempo);
+
+        let mensaje_texto = '<p class="mb-0"><span class="text-sm ${clase_cambio} font-weight-bolder"> ${porcentaje_de_cambio} </span> ${mensaje_tiempo} </p>'
     }
+  
 };
 
 runScripts();
